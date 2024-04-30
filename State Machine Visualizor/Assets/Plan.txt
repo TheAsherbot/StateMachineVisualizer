@@ -1,0 +1,3 @@
+Make a Behavoir Tree Similar to AdamCYounis https://youtu.be/-jkT4oFi1vk?si=rcsIVRoLhQcf3fa5&t=204
+
+Make it all scriptable Object based instead of Mono Behaviour Based
