@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e3a4540f5472694788042b502ccdd3a, type: 3}
-  m_Name: State Machine Scriptable Object
+  m_Script: {fileID: -228747253, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
+  m_Name: OdinModuleConfig
   m_EditorClassIdentifier: 
-  rootState:
-    children: []
+  configurations:
+  - ID: Unity.Mathematics
+    ActivationSettings: 0
+  ModuleTogglingSettings: 1
+  ModuleUpdateSettings: 1

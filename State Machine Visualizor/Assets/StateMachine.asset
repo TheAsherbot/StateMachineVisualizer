@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dfa55db9bfcd6489924e562b3fa5ff, type: 3}
   m_Name: StateMachine
   m_EditorClassIdentifier: 
-  states: []
+  states:
+  - {fileID: 0}

@@ -1,33 +1,32 @@
 using System;
-
-using UnityEngine;
-
-public class State
+ 
+public abstract class State
 {
 
     public event Action OnComplete;
 
     protected State parent;
     protected State[] children;
+    protected bool isComplete;
 
 
-    public void Start()
+    public virtual void Start()
     {
 
     }
-    public void Enter()
+    public virtual void Enter()
     {
 
     }
-    public void Update()
+    public virtual void Update()
     {
 
     }
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
 
     }
-    public void Exit()
+    public virtual void Exit()
     {
 
     }
