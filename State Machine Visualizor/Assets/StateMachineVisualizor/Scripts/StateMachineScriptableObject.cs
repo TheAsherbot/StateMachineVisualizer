@@ -9,7 +9,8 @@ public class StateMachineScriptableObject : ScriptableObject
     [Serializable]
     public class Branch
     {
-        public Branch parent;
+        [SerializeReference]
+        public State state;
         public Branch[] children;
     }
 

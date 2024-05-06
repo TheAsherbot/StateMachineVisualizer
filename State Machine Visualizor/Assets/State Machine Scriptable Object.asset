@@ -13,4 +13,18 @@ MonoBehaviour:
   m_Name: State Machine Scriptable Object
   m_EditorClassIdentifier: 
   rootState:
-    children: []
+    state:
+      rid: -2
+    children:
+    - state:
+        rid: 7806206140026716166
+      children: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7806206140026716166
+      type: {class: TestState, ns: , asm: Assembly-CSharp}
+      data:
+        name: 

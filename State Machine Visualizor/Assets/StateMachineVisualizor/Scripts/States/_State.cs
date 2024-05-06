@@ -1,9 +1,13 @@
 using System;
- 
+using System.Collections.Generic;
+
+[Serializable]
 public abstract class State
 {
 
     public event Action OnComplete;
+
+    public string name;
 
     protected State parent;
     protected State[] children;
@@ -29,6 +33,11 @@ public abstract class State
     public virtual void Exit()
     {
 
+    }
+
+    public virtual Dictionary<string, Type> NeededBlackBoardItems()
+    {
+        return default;
     }
 
 
