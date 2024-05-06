@@ -14,17 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootState:
     state:
-      rid: -2
+      rid: 7806206140026716167
     children:
     - state:
-        rid: 7806206140026716166
-      children: []
+        rid: 7806206140026716168
+      children:
+      - state:
+          rid: 7806206140026716170
+        children: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7806206140026716166
-      type: {class: TestState, ns: , asm: Assembly-CSharp}
+    - rid: 7806206140026716167
+      type: {class: WalkState, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Walk0
+    - rid: 7806206140026716168
+      type: {class: WalkState, ns: , asm: Assembly-CSharp}
+      data:
+        name: Walk1
+    - rid: 7806206140026716170
+      type: {class: WalkState, ns: , asm: Assembly-CSharp}
+      data:
+        name: Walk2

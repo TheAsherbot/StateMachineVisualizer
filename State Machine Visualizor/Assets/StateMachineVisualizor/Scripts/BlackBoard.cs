@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+
 public class BlackBoard
 {
     public Dictionary<string, bool> boolBlackBoard = new Dictionary<string, bool>();
