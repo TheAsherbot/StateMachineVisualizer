@@ -3,18 +3,53 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class WalkState : State
+
+namespace TheAshBot.StateMachine
 {
-
-
-
-    public override Dictionary<string, Type> NeededBlackBoardItems()
+    public class WalkState : State
     {
-        return new Dictionary<string, Type>()
+        public WalkState() : base()
+        {
+
+        }
+
+        public override void Start()
+        {
+            base.Start();
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
+
+        public override Dictionary<string, Type> NeededBlackBoardItems()
+        {
+            return new Dictionary<string, Type>()
         {
             { "Transform", typeof(Component) },
             { "RigidBody", typeof(Component) }
         };
-    }
+        }
 
+
+
+
+    }
 }

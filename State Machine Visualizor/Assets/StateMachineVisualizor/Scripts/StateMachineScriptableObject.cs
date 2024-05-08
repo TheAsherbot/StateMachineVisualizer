@@ -1,20 +1,33 @@
 using System;
+using System.Collections.Generic;
+
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "State Machine Scriptable Object", menuName = "State Machine/State Machine Scriptable Object", order = 0)]
-public class StateMachineScriptableObject : ScriptableObject
+
+namespace TheAshBot.StateMachine
 {
-
-    [Serializable]
-    public class Branch
+    [CreateAssetMenu(fileName = "State Machine Scriptable Object", menuName = "State Machine/State Machine Scriptable Object", order = 0)]
+    public class StateMachineScriptableObject : ScriptableObject
     {
-        [SerializeReference]
-        public State state;
-        public Branch[] children;
+
+        [Serializable]
+        public class Branch
+        {
+#if UNITY_EDITOR
+            [HideInInspector, Obsolete("THIS IS FOR EDITOR USE ONLY!!!")] public bool isFoldedOut;
+            [HideInInspector, Obsolete("THIS IS FOR EDITOR USE ONLY!!!")] public Branch parent;
+#endif
+
+            [SerializeReference]
+            public State state;
+
+            public List<Branch> children = new List<Branch>();
+        }
+
+
+        [SerializeField] public Branch rootState;
     }
-
-
-    public Branch rootState;
-
 }

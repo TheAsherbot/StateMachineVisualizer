@@ -7,22 +7,27 @@ using UnityEditor;
 
 using UnityEngine;
 
-[CustomEditor(typeof(StateMachineBlackBoard))]
-public class StateMachineBackBoardEditor : Editor
+
+namespace TheAshBot.StateMachine.Editor
 {
-    private StateMachineBlackBoard blackBoard;
-
-    public override void OnInspectorGUI()
+    
+    [CustomEditor(typeof(StateMachineBlackBoard))]
+    public class StateMachineBackBoardEditor : UnityEditor.Editor
     {
-        blackBoard = (StateMachineBlackBoard)target;
-        base.OnInspectorGUI();
-
-        if (GUILayout.Button("GenerateBlackBoard"))
+        private StateMachineBlackBoard blackBoard;
+    
+        public override void OnInspectorGUI()
         {
-            blackBoard.GenerateBlackBoard();
+            blackBoard = (StateMachineBlackBoard)target;
+            base.OnInspectorGUI();
+    
+            if (GUILayout.Button("GenerateBlackBoard"))
+            {
+                blackBoard.GenerateBlackBoard();
+            }
         }
+    
     }
-
 }
 #endif
 #endif
