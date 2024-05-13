@@ -8,10 +8,7 @@ namespace TheAshBot.StateMachine
 {
     public class WalkState : State
     {
-        public WalkState() : base()
-        {
 
-        }
 
         public override void Start()
         {
@@ -41,11 +38,12 @@ namespace TheAshBot.StateMachine
 
         public override Dictionary<string, Type> NeededBlackBoardItems()
         {
-            return new Dictionary<string, Type>()
-        {
-            { "Transform", typeof(Component) },
-            { "RigidBody", typeof(Component) }
-        };
+            Dictionary<string, Type> blackboard = base.NeededBlackBoardItems();
+
+            blackboard.Add("Transform", typeof(Component));
+            blackboard.Add("Rigidbody2D", typeof(Component));
+
+            return blackboard;
         }
 
 

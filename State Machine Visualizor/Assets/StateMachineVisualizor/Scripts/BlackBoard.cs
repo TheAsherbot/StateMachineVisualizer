@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -5,6 +6,12 @@ using UnityEngine;
 
 namespace TheAshBot.StateMachine
 {
+#if !ODIN_INSPECTOR
+    [Serializable]
+#endif
+    /// <summary>
+    /// Hold a 5 separate dictionaries for Booleans, Integers, Floating pint numbers, Strings, and Unity Components 
+    /// </summary>
     public class BlackBoard
     {
         public Dictionary<string, bool> boolBlackBoard = new Dictionary<string, bool>();

@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3a4540f5472694788042b502ccdd3a, type: 3}
   m_Name: State Machine Scriptable Object
   m_EditorClassIdentifier: 
-  rootState:
+  rootBranch:
     isFoldedOut: 0
-    state:
-      rid: -2
-    children: []
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    _int: 1
+    childBranches:
+    - isFoldedOut: 1
+      _int: 2
+      childBranches:
+      - isFoldedOut: 1
+        _int: 3
+        childBranches: []
+  refBranch:
+    _int: 7

@@ -1,5 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <ui:Hash128Field label="Hash128 Field" value="885eea9fcca73bdadde4ecd6a3af1312" readonly="false" is-delayed="false" />
-    <uie:ObjectField label="Object Field" allow-scene-objects="false" type="TheAshBot.StateMachine.StateMachineRunner, Assembly-CSharp" />
-    <uie:PropertyField />
-</ui:UXML>

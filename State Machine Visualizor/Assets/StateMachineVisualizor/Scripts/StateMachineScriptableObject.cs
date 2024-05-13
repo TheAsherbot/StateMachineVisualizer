@@ -1,11 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
-
 using UnityEngine;
-
 
 namespace TheAshBot.StateMachine
 {
@@ -17,17 +13,34 @@ namespace TheAshBot.StateMachine
         public class Branch
         {
 #if UNITY_EDITOR
-            [HideInInspector, Obsolete("THIS IS FOR EDITOR USE ONLY!!!")] public bool isFoldedOut;
-            [HideInInspector, Obsolete("THIS IS FOR EDITOR USE ONLY!!!")] public Branch parent;
+            // For Use of the custom Editor.
+            /// <summary>
+            /// THIS IS FOR EDITOR USE ONLY!!!!!
+            /// </summary>
+            [HideInInspector] public bool isFoldedOut;
+            /// <summary>
+            /// THIS IS FOR EDITOR USE ONLY!!!!!
+            /// </summary>
+            [HideInInspector] public Branch parent;
 #endif
 
-            [SerializeReference]
+            // [SerializeReference]
             public State state;
 
-            public List<Branch> children = new List<Branch>();
+            public int _int = 0;
+
+            public List<Branch> childBranches = new List<Branch>();
         }
 
 
-        [SerializeField] public Branch rootState;
+        public Branch rootBranch;
+
+        public RefBranch refBranch;
+
+        [Serializable]
+        public struct RefBranch
+        {
+            public int _int;
+        }
     }
 }
