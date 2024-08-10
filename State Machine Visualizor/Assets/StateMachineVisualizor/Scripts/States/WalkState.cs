@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace TheAshBot.StateMachine
 {
+    [Serializable]
     public class WalkState : State
     {
 

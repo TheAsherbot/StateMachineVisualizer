@@ -71,17 +71,17 @@ namespace TheAshBot.StateMachine.Editor
             root.name = "root";
 
             
-            SerializedProperty listProperty = serializedObject.FindProperty("rootBranch");
+//            SerializedProperty listProperty = serializedObject.FindProperty("rootBranch");
 
             // Get the SerializedProperty for the individual elements in the list
-            SerializedProperty elementProperty = listProperty.GetArrayElementAtIndex(0);
+//            SerializedProperty elementProperty = listProperty.GetArrayElementAtIndex(0);
 
 
-            // currentBranchBeingDrawn = stateMachine.rootBranch;
+//            currentBranchBeingDrawn = stateMachine.rootBranch;
             AddUIForBranch(root, new int[0]);
-            // AddUIForBranch(root, null);
+//            AddUIForBranch(root, null);
 
-            // Debug.Log("stateMachine.rootBranch.state: " + currentBranchBeingDrawn.state);
+//            Debug.Log("stateMachine.rootBranch.state: " + currentBranchBeingDrawn.state);
             return root;
         }
 
@@ -137,8 +137,7 @@ namespace TheAshBot.StateMachine.Editor
             for (int i = 0; i < traceBackPath.Length; i++)
             {
                 currentBranchPath += ".childBranches.Array.data[" + traceBackPath[i] + "]";
-                Debug.Log(currentBranchPath);
-                Debug.Log(serializedObject.FindProperty(currentBranchPath + "._int"));
+                // Debug.Log(currentBranchPath);
                 currentBranch = currentBranch.childBranches[traceBackPath[i]];
             }
 
@@ -146,7 +145,6 @@ namespace TheAshBot.StateMachine.Editor
             // currentBranch.parent = parentBranch;
 
             #region Fouldout
-            Debug.Log("" +(serializedObject.FindProperty(currentBranchPath + ".isFoldedOut").displayName));
             Foldout foldout = new Foldout();
             foldout.value = currentBranch.isFoldedOut;
             foldout.RegisterValueChangedCallback((ChangeEvent<bool> callback) =>
@@ -170,7 +168,6 @@ namespace TheAshBot.StateMachine.Editor
             }
             DropdownField stateDropdownField = new DropdownField("State", typesInheritedFromStateNamesList, defaultStateDropdownFieldIndex);
 
-            Debug.Log(currentBranch == stateMachine.rootBranch);
             bool isRoot = currentBranch == stateMachine.rootBranch;
             StateMachineScriptableObject.Branch testCurrentBranch = currentBranch;
             stateDropdownField.RegisterValueChangedCallback((ChangeEvent<string> callback) =>
@@ -244,15 +241,23 @@ namespace TheAshBot.StateMachine.Editor
             parentVisualElement.Add(foldout);
 
 
+            Debug.Log("childBranches.Count: " + currentBranch.childBranches.Count);
             // Check for childBranches, and Get ready to update them
             for (int i = 0; i < currentBranch.childBranches.Count; i++)
             {
                 int j = i;
+                Debug.Log("j1: " + j);
                 OnChildrenReadyToDraw += () =>
                 {
-                    currentBranch = currentBranch.childBranches[j];
+                    Debug.Log("currentBranchPath: " + currentBranchPath);
+                    Debug.Log("j2: " + j);
+                    Debug.Log("childBranches.Count: " + currentBranch.childBranches.Count);
+
+                    // currentBranch = currentBranch.childBranches[j];
+
                     List<int> traceBackPathList = traceBackPath.ToList();
                     traceBackPathList.Add(j);
+                    
                     AddUIForBranch(foldout, traceBackPathList.ToArray());
                 };
             }

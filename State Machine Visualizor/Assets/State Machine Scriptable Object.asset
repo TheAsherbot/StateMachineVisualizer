@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: State Machine Scriptable Object
   m_EditorClassIdentifier: 
   rootBranch:
-    isFoldedOut: 0
-    _int: 1
-    childBranches:
-    - isFoldedOut: 1
-      _int: 2
-      childBranches:
-      - isFoldedOut: 1
-        _int: 3
-        childBranches: []
+    isFoldedOut: 1
+    state:
+      rid: -2
+    _int: 0
+    childBranches: []
   refBranch:
-    _int: 7
+    _int: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace TheAshBot.StateMachine
 {
+    [Serializable]
     public abstract class State
     {
 

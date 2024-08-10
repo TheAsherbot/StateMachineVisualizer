@@ -24,7 +24,7 @@ namespace TheAshBot.StateMachine
             [HideInInspector] public Branch parent;
 #endif
 
-            // [SerializeReference]
+            [SerializeReference]
             public State state;
 
             public int _int = 0;
@@ -33,6 +33,7 @@ namespace TheAshBot.StateMachine
         }
 
 
+        [SerializeField]
         public Branch rootBranch;
 
         public RefBranch refBranch;
