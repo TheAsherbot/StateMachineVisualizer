@@ -16,12 +16,37 @@ MonoBehaviour:
     isFoldedOut: 1
     state:
       rid: -2
-    _int: 0
-    childBranches: []
-  refBranch:
-    _int: 5
+    childBranches:
+    - isFoldedOut: 1
+      state:
+        rid: 1931683828796751909
+      childBranches:
+      - isFoldedOut: 0
+        state:
+          rid: 1931683828796751910
+        childBranches: []
+    - isFoldedOut: 1
+      state:
+        rid: 1931683828796751912
+      childBranches: []
+    - isFoldedOut: 1
+      state:
+        rid: 1931683828796751913
+      childBranches: []
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 1931683828796751909
+      type: {class: WalkState, ns: TheAshBot.StateMachine, asm: Assembly-CSharp}
+      data: 
+    - rid: 1931683828796751910
+      type: {class: WalkState, ns: TheAshBot.StateMachine, asm: Assembly-CSharp}
+      data: 
+    - rid: 1931683828796751912
+      type: {class: RunState, ns: TheAshBot.StateMachine, asm: Assembly-CSharp}
+      data: 
+    - rid: 1931683828796751913
+      type: {class: WalkState, ns: TheAshBot.StateMachine, asm: Assembly-CSharp}
+      data: 

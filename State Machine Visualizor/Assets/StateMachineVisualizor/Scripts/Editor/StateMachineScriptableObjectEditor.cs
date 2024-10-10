@@ -67,6 +67,8 @@ namespace TheAshBot.StateMachine.Editor
         {
             stateMachine = (StateMachineScriptableObject)target;
 
+
+
             VisualElement root = new VisualElement();
             root.name = "root";
 
@@ -79,9 +81,13 @@ namespace TheAshBot.StateMachine.Editor
 
 //            currentBranchBeingDrawn = stateMachine.rootBranch;
             AddUIForBranch(root, new int[0]);
-//            AddUIForBranch(root, null);
+            //            AddUIForBranch(root, null);
 
-//            Debug.Log("stateMachine.rootBranch.state: " + currentBranchBeingDrawn.state);
+            //            Debug.Log("stateMachine.rootBranch.state: " + currentBranchBeingDrawn.state);
+
+            serializedObject.ApplyModifiedProperties();
+
+
             return root;
         }
 
@@ -117,16 +123,8 @@ namespace TheAshBot.StateMachine.Editor
         private void AddUIForBranch(VisualElement parentVisualElement, int[] traceBackPath)
         {
             serializedObject.Update();
-            PropertyField refBranchIntField = new PropertyField(serializedObject.FindProperty("refBranch._int"));
 
-            refBranchIntField.RegisterValueChangeCallback((SerializedPropertyChangeEvent callback) =>
-            {
-                // stateMachine.refBranch._int = callback.newValue;
-                serializedObject.ApplyModifiedProperties();
-            });
-
-            parentVisualElement.Add(refBranchIntField);
-
+            parentVisualElement.style.flexDirection = FlexDirection.Column;
 
             // Cannot easily remove all childBranches from events. Instead the value to be the same as an empty event.
             OnChildrenReadyToDraw = EmptyAction;
@@ -142,7 +140,7 @@ namespace TheAshBot.StateMachine.Editor
             }
 
             // Might not need this?
-            // currentBranch.parent = parentBranch;
+            
 
             #region Fouldout
             Foldout foldout = new Foldout();
@@ -150,6 +148,10 @@ namespace TheAshBot.StateMachine.Editor
             foldout.RegisterValueChangedCallback((ChangeEvent<bool> callback) =>
             {
                 currentBranch.isFoldedOut = callback.newValue;
+                serializedObject.ApplyModifiedProperties();
+
+                Save();
+                Undo.RecordObject(target, callback.newValue ? "Folded out a Child Branch" : "Collapsed out a Child Branch");
             });
             #endregion
 
@@ -194,6 +196,7 @@ namespace TheAshBot.StateMachine.Editor
                     Debug.Log("stateMachine.rootBranch.state: " + stateMachine.rootBranch.state);
                 }
 
+                Save();
             });
 
             foldout.text = stateDropdownField.value;
@@ -201,23 +204,19 @@ namespace TheAshBot.StateMachine.Editor
             foldout.Add(stateDropdownField);
             #endregion
 
-            IntegerField integerField = new IntegerField("Test Int");
-            integerField.value = currentBranch._int;
-
-            integerField.RegisterValueChangedCallback((ChangeEvent<int> callback) =>
-            {
-                currentBranch._int = callback.newValue;
-            });
-
-            foldout.Add(integerField);
-
             #region addNewChildButton
             Button addNewChildButton = new Button(() =>
             {
-                currentBranch.childBranches.Add(new StateMachineScriptableObject.Branch());
+                StateMachineScriptableObject.Branch branch = new StateMachineScriptableObject.Branch();
+                branch.parent = currentBranch;
+                branch.state = new WalkState();
+                currentBranch.childBranches.Add(branch);
+
                 List<int> traceBackPathList = traceBackPath.ToList();
-                traceBackPathList.Add(0);
+                traceBackPathList.Add(currentBranch.childBranches.Count - 1);
                 AddUIForBranch(foldout, traceBackPathList.ToArray());
+
+                Save();
             });
             addNewChildButton.text = "Add New Child";
 
@@ -231,6 +230,8 @@ namespace TheAshBot.StateMachine.Editor
                 {
                     currentBranch.parent.childBranches.Remove(currentBranch);
                     foldout.parent.Remove(foldout);
+
+                    Save();
                 });
                 removeSelfFromParentButton.text = "Remove Self";
 
@@ -272,6 +273,14 @@ namespace TheAshBot.StateMachine.Editor
                 OnChildrenReadyToDraw.Invoke();
             }
 
+            Save();
+        }
+
+        private void Save()
+        {
+            serializedObject.ApplyModifiedProperties();
+            AssetDatabase.SaveAssets();
+            EditorUtility.SetDirty(stateMachine);
         }
         
         

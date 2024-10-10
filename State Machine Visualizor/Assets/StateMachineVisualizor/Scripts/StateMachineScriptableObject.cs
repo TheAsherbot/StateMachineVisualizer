@@ -17,18 +17,17 @@ namespace TheAshBot.StateMachine
             /// <summary>
             /// THIS IS FOR EDITOR USE ONLY!!!!!
             /// </summary>
-            [HideInInspector] public bool isFoldedOut;
+            [SerializeField, HideInInspector] public bool isFoldedOut;
             /// <summary>
             /// THIS IS FOR EDITOR USE ONLY!!!!!
             /// </summary>
-            [HideInInspector] public Branch parent;
+            [SerializeField, HideInInspector] public Branch parent;
 #endif
 
-            [SerializeReference]
+            [SerializeField, SerializeReference]
             public State state;
 
-            public int _int = 0;
-
+            [SerializeField]
             public List<Branch> childBranches = new List<Branch>();
         }
 
@@ -36,12 +35,5 @@ namespace TheAshBot.StateMachine
         [SerializeField]
         public Branch rootBranch;
 
-        public RefBranch refBranch;
-
-        [Serializable]
-        public struct RefBranch
-        {
-            public int _int;
-        }
     }
 }
